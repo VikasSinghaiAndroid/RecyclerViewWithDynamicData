@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerviewwithdynamicdata.adapter.RecycleViewAdapter
 import com.example.recyclerviewwithdynamicdata.network.DataParseApi
-import com.example.recyclerviewwithdynamicdata.network.DataPropertyParser
-import com.example.recyclerviewwithdynamicdata.network.Row
+import com.example.recyclerviewwithdynamicdata.network.models.DataPropertyParser
+import com.example.recyclerviewwithdynamicdata.network.models.Row
 import kotlinx.android.synthetic.main.recycle_view_layout.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -96,7 +96,7 @@ class RecyclerViewActivity : AppCompatActivity() {
         if (isOnline(this)) {
             getData()
         } else {
-            this.toast("Please check your internet connection !!!")
+            this.toast(getString(R.string.network_message))
         }
     }
 

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.recyclerviewwithdynamicdata.R
-import com.example.recyclerviewwithdynamicdata.network.Row
+import com.example.recyclerviewwithdynamicdata.network.models.Row
 
 /**
  * Takes the dataList and loads into recycle view

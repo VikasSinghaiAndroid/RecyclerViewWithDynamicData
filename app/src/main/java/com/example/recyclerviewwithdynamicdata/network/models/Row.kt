@@ -1,7 +1,7 @@
 /**
  * Model class for Json data
  */
-package com.example.recyclerviewwithdynamicdata.network
+package com.example.recyclerviewwithdynamicdata.network.models
 
 data class Row(
     val title: String? = "Title is null",
