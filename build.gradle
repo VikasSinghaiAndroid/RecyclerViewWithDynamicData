@@ -16,7 +16,9 @@ buildscript {
         version_moshi = "1.9.2"
         version_converter_moshi = "2.4.0"
         version_retrofit = "2.5.0"
-
+        version_recyclerview = "1.1.0"
+        version_card_view = "1.0.0"
+        version_glide = "4.11.0"
     }
     repositories {
         google()

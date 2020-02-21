@@ -1,3 +1,6 @@
+/**
+ * This class fetch the data from server
+ */
 package com.example.recyclerviewwithdynamicdata.network
 
 import com.squareup.moshi.Moshi

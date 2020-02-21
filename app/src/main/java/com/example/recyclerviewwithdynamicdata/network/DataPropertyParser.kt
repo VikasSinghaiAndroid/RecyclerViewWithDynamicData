@@ -1,3 +1,6 @@
+/**
+ * Model class for Json Data
+ */
 package com.example.recyclerviewwithdynamicdata.network
 
 import com.squareup.moshi.Json

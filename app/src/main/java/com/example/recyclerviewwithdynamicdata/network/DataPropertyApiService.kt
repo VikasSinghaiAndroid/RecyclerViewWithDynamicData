@@ -1,3 +1,6 @@
+/**
+ * This interface use to get data property
+ */
 package com.example.recyclerviewwithdynamicdata.network
 
 import retrofit2.Call

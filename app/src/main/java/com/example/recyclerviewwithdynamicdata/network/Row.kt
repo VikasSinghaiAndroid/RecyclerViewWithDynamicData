@@ -1,3 +1,6 @@
+/**
+ * Model class for Json data
+ */
 package com.example.recyclerviewwithdynamicdata.network
 
 data class Row(
