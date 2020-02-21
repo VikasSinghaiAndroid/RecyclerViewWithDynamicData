@@ -49,7 +49,7 @@ class RecyclerViewActivity : AppCompatActivity() {
                 ) {
                     listResult = response.body()!!.rows
                     Log.d("RecyclerViewActivity", response.body().toString())
-                    setTextView(response.body()?.title.toString()+ " : " + listResult[0].title)
+                    setTextView(response.body()?.title.toString() + " : " + listResult[0].title)
 
                 }
             })
