@@ -13,13 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".RecyclerViewActivity"
-            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
+            android:name=".SplashActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".RecyclerViewActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
         </activity>
     </application>
 
