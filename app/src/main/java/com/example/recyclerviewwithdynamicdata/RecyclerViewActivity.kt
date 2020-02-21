@@ -3,11 +3,15 @@
  */
 package com.example.recyclerviewwithdynamicdata
 
+import android.content.Context
 import android.graphics.Color
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,7 +51,7 @@ class RecyclerViewActivity : AppCompatActivity() {
         //Button to load the data from server and show in recycle view
         this.loadDataButton = findViewById(R.id.load_data)
         this.loadDataButton.setOnClickListener {
-            getData()
+            callGetData()
         }
 
         // Set the colors for Pull To Refresh View
@@ -61,7 +65,7 @@ class RecyclerViewActivity : AppCompatActivity() {
 
         //List refresh listener
         items_swipe_to_refresh.setOnRefreshListener {
-            getData()
+            callGetData()
         }
 
     }
@@ -73,6 +77,39 @@ class RecyclerViewActivity : AppCompatActivity() {
      */
     private fun setActionBar(name: String) {
         supportActionBar!!.title = name
+    }
+
+    /**
+     * Pass the message and show Toast message to user
+     *
+     * @param message
+     */
+    private fun Context.toast(message: CharSequence) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    /**
+     * Check internet if connected then call fetch data method
+     *
+     */
+    private fun callGetData() {
+        if (isOnline(this)) {
+            getData()
+        } else {
+            this.toast("Please check your internet connection !!!")
+        }
+    }
+
+    /**
+     * Check network state
+     *
+     * @param context
+     * @return boolean
+     */
+    private fun isOnline(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        return activeNetwork?.isConnectedOrConnecting == true
     }
 
     /**
