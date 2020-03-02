@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SampleWithAll</string>
+    <string name="sub_title">Sub Title:</string>
+    <string name="description">Description:</string>
+    <string name="contentDescription">Image view will get the image from server</string>
+    <string name="welcome">Welcome to Android code exercise</string>
+</resources>

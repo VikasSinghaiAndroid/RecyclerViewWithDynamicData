@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.samplewithall.ui.ListFragment"
+        android:label="List Fragment">
+        <action
+            android:id="@+id/action_listFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.samplewithall.ui.DetailFragment"
+        android:label="Detail Fragment" >
+        <argument
+            android:name="rowItems"
+            app:argType="com.example.samplewithall.models.Row"
+            app:nullable="true" />
+        <argument
+            android:name="titleValue"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Title" />
+    </fragment>
+</navigation>
