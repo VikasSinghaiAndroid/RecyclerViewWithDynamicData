@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">RecyclerView With Dynamic Data</string>
-    <string name="welcome_msg">Welcome to RecycleView dynamic data loading !!!</string>
-    <string name="load_data">Load Data</string>
-    <string name="content">Get image from server and set here</string>
-    <string name="network_message">Please check your internet connection !!!</string>
-</resources>
