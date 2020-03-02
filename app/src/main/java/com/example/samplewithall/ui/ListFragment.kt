@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.samplewithall.R
 import com.example.samplewithall.models.Row
@@ -96,6 +97,9 @@ class ListFragment : DaggerFragment(), DataListAdapter.Interaction {
             layoutManager = LinearLayoutManager(this@ListFragment.context)
             adapter = dataListAdapter
         }
+
+        //Add divider for each list items
+        recyclerView.addItemDecoration(DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL))
     }
 
     private fun setupViewModel() {

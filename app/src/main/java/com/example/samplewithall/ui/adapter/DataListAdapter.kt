@@ -55,7 +55,7 @@ class DataListAdapter(
 
         fun bind(item: Row) {
             itemView.description.text = item.description
-            itemView.title.text = item.title
+            itemView.title_value.text = item.title
 
             val imageURL = item.imageHref
             imageURL?.let {
