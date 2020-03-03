@@ -37,7 +37,7 @@ class ListFragment : DaggerFragment(), DataListAdapter.Interaction {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        d("Inside onViewCreated")
         setupViewModel()
         initRecyclerView()
         observerLiveData()
@@ -45,6 +45,7 @@ class ListFragment : DaggerFragment(), DataListAdapter.Interaction {
     }
 
     private fun setUpPullDownRefresh() {
+        d("Inside setUpPullDownRefresh")
         // Set the colors for Pull To Refresh View
         items_swipe_to_refresh.setProgressBackgroundColorSchemeColor(
             ContextCompat.getColor(
@@ -56,6 +57,8 @@ class ListFragment : DaggerFragment(), DataListAdapter.Interaction {
 
         //List refresh listener
         items_swipe_to_refresh.setOnRefreshListener {
+            dataListAdapter = null
+            dataList = emptyList()
             observerLiveData()
         }
     }
@@ -65,15 +68,18 @@ class ListFragment : DaggerFragment(), DataListAdapter.Interaction {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        d("Inside onCreateView")
         dataList = mutableListOf()
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
     private fun observerLiveData() {
         d("Inside observerLiveData")
-        dataList.isEmpty()
         val dataFromServer = mainActivityViewModel.getDataFromServer()
-        if (dataFromServer == null) progressBar?.visibility = GONE
+        if (dataFromServer == null){
+            progressBar?.visibility = GONE
+            initRecyclerView()
+        }
         else dataFromServer
             .observe(viewLifecycleOwner, Observer { lisOfData ->
                 lisOfData?.let {
@@ -81,14 +87,13 @@ class ListFragment : DaggerFragment(), DataListAdapter.Interaction {
                     dataList = it.rows
                     dataListAdapter?.swap(it.rows)
                     progressBar?.visibility = GONE
-                    items_swipe_to_refresh.isRefreshing = false
-                    dataListAdapter?.notifyDataSetChanged()
-
                 }
             })
+        items_swipe_to_refresh.isRefreshing = false
     }
 
     private fun initRecyclerView() {
+        d("Inside initRecyclerView")
         recyclerView.apply {
             dataListAdapter = DataListAdapter(
                 dataList,
@@ -103,6 +108,7 @@ class ListFragment : DaggerFragment(), DataListAdapter.Interaction {
     }
 
     private fun setupViewModel() {
+        d("Inside setupViewModel")
         mainActivityViewModel =
             ViewModelProvider(this, viewModelProviderFactory).get(MainActivityViewModel::class.java)
     }

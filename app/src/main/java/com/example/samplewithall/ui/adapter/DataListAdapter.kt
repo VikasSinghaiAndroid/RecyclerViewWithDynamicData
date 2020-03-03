@@ -10,18 +10,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.samplewithall.R
 import com.example.samplewithall.models.Row
+import com.log4k.d
 import kotlinx.android.synthetic.main.recycle_list_view.view.*
 
 
 class DataListAdapter(
-    noteList: List<Row>,
+    list: List<Row>,
     private val interaction: Interaction? = null
 ) : RecyclerView.Adapter<DataListAdapter.ViewHolder>() {
 
     private val mutableDataList = mutableListOf<Row>()
 
     init {
-        mutableDataList.addAll(noteList)
+        mutableDataList.addAll(list)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -39,12 +40,12 @@ class DataListAdapter(
         holder.bind(item = mutableDataList[position])
     }
 
-    fun swap(notes: List<Row>) {
-        val diffCallback = DiffCallback(this.mutableDataList, notes)
+    fun swap(list: List<Row>) {
+        val diffCallback = DiffCallback(this.mutableDataList, list)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
 
         this.mutableDataList.clear()
-        this.mutableDataList.addAll(notes)
+        this.mutableDataList.addAll(list)
         diffResult.dispatchUpdatesTo(this)
     }
 
@@ -57,6 +58,7 @@ class DataListAdapter(
             itemView.description.text = item.description
             itemView.title_value.text = item.title
 
+            d("Inside View Holder bind : ${item.imageHref}")
             val imageURL = item.imageHref
             imageURL?.let {
                 val imgUri = imageURL.toUri().buildUpon().scheme("https").build()
@@ -68,13 +70,9 @@ class DataListAdapter(
                             .error(R.drawable.ic_broken_image)
                     )
                     .into(itemView.image_href)
-
-                //Handle item click
-                itemView.setOnClickListener {
-                    interaction?.onItemSelected(adapterPosition, item)
                 }
-            }
-
+            //Handle item click
+            itemView.setOnClickListener { interaction?.onItemSelected(adapterPosition, item) }
         }
     }
 
