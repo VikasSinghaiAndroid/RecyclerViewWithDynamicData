@@ -57,7 +57,6 @@ class ListFragment : DaggerFragment(), DataListAdapter.Interaction {
 
         //List refresh listener
         items_swipe_to_refresh.setOnRefreshListener {
-            dataListAdapter = null
             dataList = emptyList()
             observerLiveData()
         }
