@@ -54,7 +54,6 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/contentDescription"
         android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="@+id/title_value"
         app:layout_constraintEnd_toStartOf="@+id/imageView2"
         app:layout_constraintHorizontal_bias="0.5"

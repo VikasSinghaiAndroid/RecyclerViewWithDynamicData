@@ -6,9 +6,9 @@ Components used :
 3. MVVM
 4. RxKotlin
 5. Dagger
-6. recyclerview
-7. navigation
+6. RecyclerView
+7. Navigation
 8. LiveData
 9. Pull to refresh
-10. log4k
-11. glide to load image
+10. Log4k
+11. Picasso to load the image

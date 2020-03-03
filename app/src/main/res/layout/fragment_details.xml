@@ -70,7 +70,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.347"
-        app:srcCompat="@android:drawable/sym_def_app_icon"
         android:contentDescription="@string/contentDescription" />
 
     <TextView

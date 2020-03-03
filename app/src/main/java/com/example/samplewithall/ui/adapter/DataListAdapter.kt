@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.samplewithall.R
 import com.example.samplewithall.models.Row
 import com.log4k.d
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recycle_list_view.view.*
 
 
@@ -58,19 +58,26 @@ class DataListAdapter(
             itemView.description.text = item.description
             itemView.title_value.text = item.title
 
-            d("Inside View Holder bind : ${item.imageHref}")
             val imageURL = item.imageHref
-            imageURL?.let {
-                val imgUri = imageURL.toUri().buildUpon().scheme("https").build()
-                Glide.with(itemView.image_href.context)
+            if (imageURL.isNullOrEmpty() || imageURL.isNullOrBlank()) {
+                itemView.image_href.setImageResource(R.drawable.ic_broken_image)
+            } else {
+                val imgUri = imageURL.toUri().buildUpon().scheme("http").build()
+                Picasso.get()
                     .load(imgUri)
-                    .apply(
-                        RequestOptions()
-                            .placeholder(R.drawable.loading_animation)
-                            .error(R.drawable.ic_broken_image)
-                    )
-                    .into(itemView.image_href)
-                }
+                    .error(R.drawable.ic_broken_image)
+                    .placeholder(R.drawable.loading_animation)
+                    .into(itemView.image_href, object : Callback {
+                        override fun onSuccess() {
+                            d("Picasso Success")
+                        }
+
+                        override fun onError(e: Exception?) {
+                            d("Picasso Error : ${e?.message}")
+                        }
+                    })
+            }
+
             //Handle item click
             itemView.setOnClickListener { interaction?.onItemSelected(adapterPosition, item) }
         }
