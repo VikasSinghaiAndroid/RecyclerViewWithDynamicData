@@ -8,6 +8,6 @@ Components used :
 5. RecyclerView
 6. Navigation
 7. LiveData with Lifecycle observe and observers
-9. Pull to refresh
-10. Log4k for efficient logging
-11. Picasso to load the image
+8. Pull to refresh
+9. Log4k for efficient logging
+10. Picasso to load the image
