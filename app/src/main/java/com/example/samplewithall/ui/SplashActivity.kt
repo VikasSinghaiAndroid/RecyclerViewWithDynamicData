@@ -9,7 +9,7 @@ import dagger.android.DaggerActivity
 
 class SplashActivity : DaggerActivity() {
     private var mDelayHandler: Handler? = null
-    private val splashDelay: Long = 5000 //5 seconds
+    private val splashDelay: Long = 2000 //5 seconds
 
     private val mRunnable: Runnable = Runnable {
         if (!isFinishing) {

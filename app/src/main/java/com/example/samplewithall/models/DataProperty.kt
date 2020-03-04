@@ -10,7 +10,7 @@ data class DataProperty(
     val title: String? = "Title is empty",
     val rows: List<Row>
 ) : Parcelable {
-    constructor(parcel: Parcel) : this (
+    constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.createTypedArrayList(Row)!!
     )

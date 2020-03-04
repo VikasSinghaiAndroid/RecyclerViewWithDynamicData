@@ -75,20 +75,22 @@ class ListFragment : DaggerFragment(), DataListAdapter.Interaction {
     private fun observerLiveData() {
         d("Inside observerLiveData")
         val dataFromServer = mainActivityViewModel.getDataFromServer()
-        if (dataFromServer == null){
+        if (dataFromServer == null) {
             progressBar?.visibility = GONE
             initRecyclerView()
+        } else {
+            dataFromServer.removeObservers(viewLifecycleOwner)
+            dataFromServer
+                .observe(viewLifecycleOwner, Observer { lisOfData ->
+                    lisOfData?.let {
+                        title = it.title
+                        dataList = it.rows
+                        dataListAdapter?.swap(it.rows)
+                        progressBar?.visibility = GONE
+                    }
+                })
+            items_swipe_to_refresh.isRefreshing = false
         }
-        else dataFromServer
-            .observe(viewLifecycleOwner, Observer { lisOfData ->
-                lisOfData?.let {
-                    title = it.title
-                    dataList = it.rows
-                    dataListAdapter?.swap(it.rows)
-                    progressBar?.visibility = GONE
-                }
-            })
-        items_swipe_to_refresh.isRefreshing = false
     }
 
     private fun initRecyclerView() {
@@ -103,7 +105,12 @@ class ListFragment : DaggerFragment(), DataListAdapter.Interaction {
         }
 
         //Add divider for each list items
-        recyclerView.addItemDecoration(DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL))
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                requireActivity(),
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 
     private fun setupViewModel() {

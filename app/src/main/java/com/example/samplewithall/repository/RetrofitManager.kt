@@ -11,7 +11,6 @@ import com.log4k.e
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 // Base URL to get the Json Data
@@ -20,12 +19,11 @@ private const val BASE_URL =
 
 class RetrofitManager {
 
-    val liveUserResponse: MutableLiveData<DataProperty> = MutableLiveData()
+    private val liveUserResponse: MutableLiveData<DataProperty> by lazy { MutableLiveData<DataProperty>() }
 
     companion object Factory {
         fun create(): RetrofitApiService {
             val retrofit = Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
                 .baseUrl(BASE_URL)
                 .build()
@@ -47,10 +45,10 @@ class RetrofitManager {
                 call: Call<DataProperty>,
                 response: retrofit2.Response<DataProperty>
             ) {
+                d("Response Received ")
                 val list = response.body()
                 liveUserResponse.value = list
                 d("hasActiveObservers : ${liveUserResponse.hasActiveObservers()} check")
-                d("Response Data: ${liveUserResponse.value.toString()}")
             }
 
         })

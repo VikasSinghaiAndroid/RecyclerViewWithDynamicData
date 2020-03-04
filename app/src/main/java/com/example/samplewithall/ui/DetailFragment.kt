@@ -47,11 +47,11 @@ class DetailFragment : DaggerFragment() {
                     .placeholder(R.drawable.loading_animation)
                     .into(profile, object : Callback {
                         override fun onSuccess() {
-                            d("Picasso Success")
+                            d("Picasso image loading success")
                         }
 
                         override fun onError(e: Exception?) {
-                            d("Picasso Error : ${e?.message}")
+                            d("Picasso image loading error : ${e?.message}")
                         }
                     })
             }

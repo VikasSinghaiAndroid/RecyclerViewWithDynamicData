@@ -3,12 +3,11 @@ This application shows how to fetch the huge data from server, parse the data an
 Components used :
 1. Kotlin
 2. Retrofit
-3. MVVM
-4. RxKotlin
-5. Dagger
-6. RecyclerView
-7. Navigation
-8. LiveData
+3. MVVM agriculture
+4. Dagger
+5. RecyclerView
+6. Navigation
+7. LiveData with Lifecycle observe and observers
 9. Pull to refresh
-10. Log4k
+10. Log4k for efficient logging
 11. Picasso to load the image
