@@ -3,7 +3,7 @@ This application shows how to fetch the huge data from server, parse the data an
 Components used :
 1. Kotlin
 2. Retrofit
-3. MVVM agriculture
+3. MVVM architecture
 4. Dagger
 5. RecyclerView
 6. Navigation
